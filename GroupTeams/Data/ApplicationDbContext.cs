@@ -14,6 +14,7 @@ namespace GroupTeams.Data
         {
         }
 
-        public DbSet<GroupTeams.Models.Team> Team { get; set; } = default!;
+        public virtual DbSet<Team> Teams { get; set; } = default!;
+        public virtual DbSet<Member> Members { get; set; } // optional
     }
 }

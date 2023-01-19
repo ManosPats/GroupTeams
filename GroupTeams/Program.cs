@@ -30,6 +30,7 @@ namespace GroupTeams
             app.UseRouting();
 
             app.UseAuthorization();
+            app.MapControllers();
 
             app.MapRazorPages();
 

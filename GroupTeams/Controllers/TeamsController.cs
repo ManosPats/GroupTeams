@@ -19,20 +19,22 @@ namespace GroupTeams.Controllers
         public TeamsController(ApplicationDbContext context)
         {
             _context = context;
+            _context.Database.EnsureCreated();
         }
 
         // GET: api/Teams
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Team>>> GetTeam()
         {
-            return await _context.Team.ToListAsync();
+            return await _context.Set<Team>().ToListAsync();
+            //return await _context.Teams.ToListAsync();
         }
 
         // GET: api/Teams/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> GetTeam(int id)
         {
-            var team = await _context.Team.FindAsync(id);
+            var team = await _context.Set<Team>().FindAsync(id);
 
             if (team == null)
             {
@@ -78,7 +80,12 @@ namespace GroupTeams.Controllers
         [HttpPost]
         public async Task<ActionResult<Team>> PostTeam(Team team)
         {
-            _context.Team.Add(team);
+            // Step 0. If team.Members.Count == 0 run _context.Set<Team>().Add(team);
+            // else Do Steps 1 - 3
+            // Step 1. Save the team with empty Members collection
+            // Step 2. Get the Id of the newly created team
+            // Step 3. Run a foreach for all the members using this team Id
+            _context.Set<Team>().Add(team);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetTeam", new { id = team.Id }, team);
@@ -88,13 +95,13 @@ namespace GroupTeams.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeam(int id)
         {
-            var team = await _context.Team.FindAsync(id);
+            var team = await _context.Set<Team>().FindAsync(id);
             if (team == null)
             {
                 return NotFound();
             }
 
-            _context.Team.Remove(team);
+            _context.Set<Team>().Remove(team);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +109,7 @@ namespace GroupTeams.Controllers
 
         private bool TeamExists(int id)
         {
-            return _context.Team.Any(e => e.Id == id);
+            return _context.Set<Team>().Any(e => e.Id == id);
         }
     }
 }
