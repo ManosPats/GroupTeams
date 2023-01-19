@@ -1,0 +1,19 @@
+﻿0. Create a web api that supports the creation of teams with members within each team
+1. Create an ASP.NET Core (6.0) (optional razor pages)
+2. Create a folder named Models under root (project folder)
+3. Create models
+3a. Team (int Id, string Name, ICollection<Member> Members)
+3b. Member (int Id, string Name, Team Team)
+3c. (Optional) Initialize Identity
+(If you're in a hurryyyyyy do 7 here with scaffolding)
+4. Initialize EF (Migrations, Update DB)
+5. Repositories
+6. Services
+7. Controllers (maybe done after 3b)
+
+Repository Team
+Repository Member
+Service Team
+Service Member
+
+Controller ----> Service -----> Repository
