@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GroupTeams.Data;
 using GroupTeams.Models;
+using System.Diagnostics;
 
 namespace GroupTeams.Controllers
 {
@@ -80,15 +81,43 @@ namespace GroupTeams.Controllers
         [HttpPost]
         public async Task<ActionResult<Team>> PostTeam(Team team)
         {
-            // Step 0. If team.Members.Count == 0 run _context.Set<Team>().Add(team);
+
+            // Step 0. If team.Members == null run _context.Set<Team>().Add(team);
             // else Do Steps 1 - 3
             // Step 1. Save the team with empty Members collection
             // Step 2. Get the Id of the newly created team
             // Step 3. Run a foreach for all the members using this team Id
-            _context.Set<Team>().Add(team);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTeam", new { id = team.Id }, team);
+            // service Business Logic
+            Debug.Print("Got to the controller");
+            if (ModelState.IsValid)
+            {
+                if (team.Members == null)
+                {
+                    _context.Set<Team>().Add(team);
+                }
+                else
+                {
+                    // adds the new team
+                    var entityTeam = _context.Set<Team>().Add(new Team()
+                    {
+                        Name = team.Name,
+                        Description = team.Description
+                    });
+                    await _context.SaveChangesAsync(); // saves the team to db
+                                                       // assign to the members the newly created team
+                    var dbTeam = entityTeam.Entity;
+                    // please make the next line to update the team.Members 
+                    team.Members.Select(member => member.Team = dbTeam);
+                    _context.Set<Member>().AddRange(team.Members);
+                }
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetTeam", new { id = team.Id }, team);
+            }
+            return Problem("Members problem", null, 405);
+            
+
+            
         }
 
         // DELETE: api/Teams/5
