@@ -7,7 +7,7 @@ const form = ReactDOM.createRoot(document.getElementById('divform')); // Step 1.
 async function sendData() {
     const url = "https://localhost:44365/api/teams";
     const form = document.getElementById('form');
-    let team = { name: form.name.value, description: form.description.value };
+    let team = { name: form.name.value, description: form.description.value, members: [] };
     let jsonObj = JSON.stringify(team);
     let obj = JSON.parse(jsonObj);
     console.log(team, jsonObj, obj);
@@ -35,6 +35,8 @@ function CreateForm() {
         <form id='form'>
             Name: <input name='name' type='text'></input><br />
             Description: <input name='description' type='text'></input><br />
+                <h4>Members</h4>
+
         </form>
             <button onClick={sendData}>Save Team</button>
         </div>
