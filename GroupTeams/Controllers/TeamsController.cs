@@ -114,12 +114,20 @@ namespace GroupTeams.Controllers
                 }
                 await _context.SaveChangesAsync();
                 //return CreatedAtAction("GetTeam", new { id = team.Id }, team);
-                return RedirectToAction("GetTeam", new { id = dbTeam.Id });
+                if (dbTeam != null)
+                {
+
+                    return RedirectToAction("GetTeam", new { id = dbTeam.Id });
+                }
+                else
+                {
+                    return RedirectToAction("GetTeam", new { id = team.Id });
+                }
             }
             return Problem("Members problem", null, 405);
-            
 
-            
+
+
         }
 
         // DELETE: api/Teams/5

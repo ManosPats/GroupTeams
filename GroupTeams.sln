@@ -23,6 +23,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "frontend(1)", "frontend\", 
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "53109"
+		SlnRelativePath = "frontend\"
 	EndProjectSection
 EndProject
 Global
@@ -36,7 +37,6 @@ Global
 		{5804D35B-CEAE-4DBD-9B37-0A4BA73EBBE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5804D35B-CEAE-4DBD-9B37-0A4BA73EBBE1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{39ABD1F9-B30B-4504-8B89-7B074367E108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39ABD1F9-B30B-4504-8B89-7B074367E108}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39ABD1F9-B30B-4504-8B89-7B074367E108}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{39ABD1F9-B30B-4504-8B89-7B074367E108}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection

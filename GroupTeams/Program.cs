@@ -4,6 +4,7 @@ using GroupTeams.Data;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Microsoft.Net.Http.Headers;
 
 namespace GroupTeams
 {
@@ -31,6 +32,11 @@ namespace GroupTeams
             //    );
             //});
             );
+            builder.Services.AddCors(
+                options => options.AddPolicy("FrontEndPolicy",
+                policy => policy.AllowAnyOrigin().AllowAnyHeader()
+                )); //.WithHeaders((HeaderNames.ContentType, "application/json")));
+
 
             var app = builder.Build();
 
@@ -46,6 +52,7 @@ namespace GroupTeams
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors("FrontEndPolicy");
 
             app.UseAuthorization();
             app.MapControllers();
