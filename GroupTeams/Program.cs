@@ -1,6 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using GroupTeams.Data;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+
 namespace GroupTeams
 {
     public class Program
@@ -13,6 +17,20 @@ namespace GroupTeams
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddControllers(
+                //options =>
+            //{
+            //    options.OutputFormatters.RemoveType<SystemTextJsonOutputFormatter>();
+            //    options.OutputFormatters.Add(
+            //        new SystemTextJsonOutputFormatter(
+            //            new JsonSerializerOptions(JsonSerializerDefaults.Web)
+            //            {
+            //                //MaxDepth = 1,
+            //                ReferenceHandler = ReferenceHandler.Preserve,
+            //            })
+            //    );
+            //});
+            );
 
             var app = builder.Build();
 

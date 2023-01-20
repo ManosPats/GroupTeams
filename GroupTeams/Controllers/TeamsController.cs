@@ -90,6 +90,7 @@ namespace GroupTeams.Controllers
 
             // service Business Logic
             Debug.Print("Got to the controller");
+            Team dbTeam = null;
             if (ModelState.IsValid)
             {
                 if (team.Members == null)
@@ -106,13 +107,14 @@ namespace GroupTeams.Controllers
                     });
                     await _context.SaveChangesAsync(); // saves the team to db
                                                        // assign to the members the newly created team
-                    var dbTeam = entityTeam.Entity;
+                    dbTeam = entityTeam.Entity;
                     // please make the next line to update the team.Members 
-                    team.Members.Select(member => member.Team = dbTeam);
+                    team.Members.ToList().ForEach(m => m.Team = dbTeam);
                     _context.Set<Member>().AddRange(team.Members);
                 }
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetTeam", new { id = team.Id }, team);
+                //return CreatedAtAction("GetTeam", new { id = team.Id }, team);
+                return RedirectToAction("GetTeam", new { id = dbTeam.Id });
             }
             return Problem("Members problem", null, 405);
             
