@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupTeams", "GroupTeams\GroupTeams.csproj", "{5804D35B-CEAE-4DBD-9B37-0A4BA73EBBE1}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "frontend(1)", "frontend\", "{39ABD1F9-B30B-4504-8B89-7B074367E108}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "frontend", "frontend\", "{39ABD1F9-B30B-4504-8B89-7B074367E108}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_53109"
 		Debug.AspNetCompiler.PhysicalPath = "frontend\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53109\"
