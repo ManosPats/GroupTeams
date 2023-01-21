@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Member } from '../src/components/member/member';
 
-const titleDOM = ReactDOM.createRoot(document.getElementById('title'));
+const title = ReactDOM.createRoot(document.getElementById('title'));
 const form = ReactDOM.createRoot(document.getElementById('divform')); // Step 1. place the tag element to the Virtual DOM
-
 
 async function sendData() {
     const url = "https://localhost:44365/api/teams";
@@ -55,5 +54,5 @@ function CreateForm() {
     );
 }
 
-titleDOM.render(<CreateTitle title="Groups Team Application" />);
+title.render(<CreateTitle title="Groups Team Application" />);
 form.render(<CreateForm />); // Step 2. update the browser window with the changes
