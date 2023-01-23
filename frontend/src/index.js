@@ -32,12 +32,16 @@ function addNewMember()
 
 function CreateTitle(props) {
     return (
-        <h1>{props.title}</h1> 
+        <div>
+            <h1>{props.title}</h1>
+            <h3>{props.someInt}</h3>
+        </div>
     );
 }
 
 // functional React Controlled Element - ReactElement
 function CreateForm() {
+    let internalNo = 1;
     return (
         <div>
             <button onClick={addNewMember}>Add New Member</button>
@@ -46,7 +50,10 @@ function CreateForm() {
                     Description: <input name='description' type='text'></input><br />
                     <h4>Members</h4>
                 <div id="members">
-                    <Member />
+                    <h4>Member - {internalNo}</h4>
+                    <Member internalNo={1} />
+                    <h4>Member - {++internalNo}</h4>
+                    <Member internalNo={2} />
                 </div>
             </form>
             <button onClick={sendData}>Save Team</button>
@@ -54,5 +61,7 @@ function CreateForm() {
     );
 }
 
-title.render(<CreateTitle title="Groups Team Application" />);
+title.render(<CreateTitle title="Groups Team Application" someInt={22} someObj={ { k:1, l: '22' } } />);
 form.render(<CreateForm />); // Step 2. update the browser window with the changes
+
+//let a = { k: 1, l: 'Hello', n: { }, m: function koukou() { console.log(k); } };
