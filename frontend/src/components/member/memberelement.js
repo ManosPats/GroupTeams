@@ -7,8 +7,8 @@ export class Member extends React.Component
     render()
     {
         return (
-            <div>
-                <h4>Member - {this.internalNo}</h4>
+            <div key={this.internalNo}>
+                <h4>Member - {this.internalNo + 1}</h4>
                 Name: <input
                     type='text'
                     name={'name_' + this.internalNo}
